@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="records"> <!--The root element of the XML document-->
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="row" maxOccurs="unbounded"> <!--Don't know how many students are there-->
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="student_info">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="name">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="20"/>
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="surname">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="30"/>
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="stuID">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:pattern value="\d{4}510\d{3}"/><!--To provide the correct form of the student ID-->
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="gender">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:pattern value="M|F"/>
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="email">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">                           
+                            <xs:pattern value=".+@(gmail\.com|hotmail\.com|yahoo\.com|ogr\.deu\.edu\.tr)|"/>
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="phone">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">                            
+                            <xs:pattern value="\(\+90\)\d{3}-\d{3}-\d{4}|"/>
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="grade_info">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="midterm">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:integer">
+                                        <xs:minInclusive value="0"/>
+                                        <xs:maxInclusive value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="project" >
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:integer">
+                                        <xs:minInclusive value="0"/>
+                                        <xs:maxInclusive value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="final" >
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:integer">
+                                        <xs:minInclusive value="0"/>
+                                        <xs:maxInclusive value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="letter_grade">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:pattern value="AA|BA|BB|CB|CC|DC|DD|FF"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="regularStudent">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:pattern value="👍|👎|"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="course_surveyRating">
+                  <xs:complexType>
+                    <xs:simpleContent>
+                      <xs:extension base="xs:integer">
+                        <xs:attribute name="hexVal_bigEnd" type="xs:string"/>
+                        <xs:attribute name="hexVal_littleEnd" type="xs:string"/>
+                        <xs:attribute name="decimal" type="xs:integer"/>
+                      </xs:extension>
+                    </xs:simpleContent>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+              <xs:attribute name="id" type="xs:integer"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+  </xs:element>
+</xs:schema>
